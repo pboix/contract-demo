@@ -1,0 +1,59 @@
+{
+  "consumer": {
+    "name": "ResultsRenderer"
+  },
+  "provider": {
+    "name": "ResultsAPI"
+  },
+  "interactions": [
+    {
+      "description": "a request for form responses",
+      "request": {
+        "method": "GET",
+        "path": "/forms/abcdef/responses",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "title": "My Awesome Form",
+          "form": [
+            {
+              "token": "21085286190ffad1248d17c4135ee56f",
+              "answers": [
+                {
+                  "field": {
+                    "id": "hVONkQcnSNRj",
+                    "type": "short_text",
+                    "title": "What's your favourite cheese?"
+                  },
+                  "type": "text",
+                  "answer": "Gouda"
+                },
+                {
+                  "field": {
+                    "id": "RUqkXSeXBXSd",
+                    "type": "yes_no",
+                    "title": "do you eat cheese everyday?"
+                  },
+                  "type": "boolean",
+                  "answer": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
