@@ -1,4 +1,5 @@
 const { Pact } = require('@pact-foundation/pact')
+const addInteractions = require('./pact_support/addInteractions')
 const Form = require('./form')
 const MOCK_SERVER_PORT = 2202;
 const formId = 'abcdef'
@@ -12,53 +13,9 @@ describe('Consumer is tested', () => {
         spec: 2
     });
 
-    const EXPECTED_BODY =
-    {
-        "title": "My Awesome Form",
-        "form": [
-            {
-                "token": "21085286190ffad1248d17c4135ee56f",
-                "answers": [
-                    {
-                        "field": {
-                            "id": "hVONkQcnSNRj",
-                            "type": "short_text",
-                            "title": "What's your favourite cheese?"
-                        },
-                        "type": "text",
-                        "answer": "Gouda"
-                    },
-                    {
-                        "field": {
-                            "id": "RUqkXSeXBXSd",
-                            "type": "yes_no",
-                            "title": "do you eat cheese everyday?"
-                        },
-                        "type": "boolean",
-                        "answer": true
-                    }
-                ]
-            }
-        ]
-    }
-
     beforeAll(done => {
         provider.setup()
-            .then(() => {
-                provider.addInteraction({
-                    uponReceiving: "a request for form responses",
-                    withRequest: {
-                        method: "GET",
-                        path: "/forms/abcdef/responses",
-                        headers: { Accept: "application/json" }
-                    },
-                    willRespondWith: {
-                        status: 200,
-                        headers: { "Content-Type": "application/json" },
-                        body: EXPECTED_BODY
-                    }
-                });
-            })
+            .then(() => addInteractions(provider))
             .then(done);
     })
 
