@@ -4,6 +4,14 @@ const Form = require('./form')
 let provider
 
 describe('Consumer is tested', () => {
+    const provider = new Pact({
+        consumer: "ResultsRenderer",
+        provider: "ResultsAPI",
+        port: MOCK_SERVER_PORT,
+        dir: process.cwd() + '/pacts/',
+        spec: 2
+    });
+
     beforeAll(done => {
         provider = new Pact({
             consumer: "ResultsRenderer",
@@ -15,7 +23,7 @@ describe('Consumer is tested', () => {
 
         provider.setup()
             .then(() => addInteractions(provider))
-            .then(done)
+            .then(done);
     })
 
     it('Returns responses for a form', done => {
