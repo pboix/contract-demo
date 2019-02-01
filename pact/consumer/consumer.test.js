@@ -1,8 +1,6 @@
 const { Pact } = require('@pact-foundation/pact')
 const addInteractions = require('./pact_support/addInteractions')
 const Form = require('./form')
-const MOCK_SERVER_PORT = 2202;
-const formId = 'abcdef'
 let provider
 
 describe('Consumer is tested', () => {
@@ -10,14 +8,14 @@ describe('Consumer is tested', () => {
         provider = new Pact({
             consumer: "ResultsRenderer",
             provider: "ResultsAPI",
-            port: MOCK_SERVER_PORT,
+            port: 2202,
             dir: process.cwd() + '/pacts/',
             spec: 2
         });
 
         provider.setup()
             .then(() => addInteractions(provider))
-            .then(done);
+            .then(done)
     })
 
     it('Returns responses for a form', done => {
