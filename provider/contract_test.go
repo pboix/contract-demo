@@ -18,11 +18,9 @@ func TestProvider(t *testing.T) {
 	go StartProvider()
 
 	pactDir := "../consumer/pacts"
-	fmt.Println("About to start pact")
 	_, err := pact.VerifyProvider(t, types.VerifyRequest{
-		ProviderBaseURL:        "http://localhost:8000",
-		PactURLs:               []string{filepath.ToSlash(fmt.Sprintf("%s/resultsrenderer-resultsapi.json", pactDir))},
-		ProviderStatesSetupURL: "http://localhost:8000/setup",
+		ProviderBaseURL: "http://localhost:8000",
+		PactURLs:        []string{filepath.ToSlash(fmt.Sprintf("%s/resultsrenderer-resultsapi.json", pactDir))},
 	})
 	if err != nil {
 		t.Fatal(err)

@@ -1,36 +1,19 @@
 package provider
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
-
-	"github.com/pact-foundation/pact-go/types"
 )
 
 //StartProvider hi yes I be comment
 func StartProvider() {
 	mux := http.NewServeMux()
-	lastName := "billy"
 
-	fmt.Println("Starting server")
-	mux.HandleFunc("/foobar", func(w http.ResponseWriter, req *http.Request) {
+	mux.HandleFunc("/forms/abcdef/responses", func(w http.ResponseWriter, req *http.Request) {
 		w.Header().Add("Content-Type", "application/json")
-		fmt.Fprintf(w, fmt.Sprintf(`{"lastName":"%s"}`, lastName))
+		fmt.Fprintf(w, fmt.Sprintf(`{"title": "My Awesome Form","form": [{"token": "21085286190ffad1248d17c4135ee56f","answers": [{"field": {"id": "hVONkQcnSNRj","type": "short_text","title": "What's your favourite cheese?"},"type": "text","answer": "Gouda"},{"field": {"id": "RUqkXSeXBXSd","type": "yes_no","title": "do you eat cheese everyday?"},"type": "boolean","answer": true}]}]}`))
 	})
 
-	mux.HandleFunc("/setup", func(w http.ResponseWriter, req *http.Request) {
-		var s *types.ProviderState
-		decoder := json.NewDecoder(req.Body)
-		decoder.Decode(&s)
-		if s.State == "User foo exists" {
-			lastName = "bar"
-		}
-
-		w.Header().Add("Content-Type", "application/json")
-	})
 	log.Fatal(http.ListenAndServe(":8000", mux))
-	fmt.Println("Server Started")
-
 }
