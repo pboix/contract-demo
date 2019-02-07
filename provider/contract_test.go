@@ -11,8 +11,9 @@ import (
 
 func TestProvider(t *testing.T) {
 	pact := &dsl.Pact{
-		Consumer: "ResultsRenderer",
-		Provider: "ResultsAPI",
+		Consumer:                 "ResultsRenderer",
+		Provider:                 "ResultsAPI",
+		DisableToolValidityCheck: true,
 	}
 
 	go StartProvider()
