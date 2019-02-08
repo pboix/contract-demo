@@ -11,7 +11,7 @@ tags:
   - name: Responses
     description: Responses for a form
 paths:
-  /forms/{form_id}/responses:
+  '/forms/abcdef/responses':
     x-owner:
       - technical:
           - name: Pau Boix
@@ -19,24 +19,52 @@ paths:
     x-product: Responses
     x-visibility: EXTERNAL
     x-status: LIVE
+    parameters:
+      - name: form_id
+        in: query
+        type: string
+        description: Pagination will return forms starting from the specified form ID.
+        x-example: abcdef
     get:
       tags:
         - Responses
       summary: Retrieve responses
-      description: Returns form responses and date and time of form landing and submission.
-      parameters:
-        - name: form_id
-          in: query
-          type: string
-      consumes:
-        - text/plain
+      description: Returns form responses and date and time of form landing and submission
+      produces:
+        - application/json; charset=UTF-8
       responses:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/FormResponses' #TBD !!
+            type: object
+            properties: 
+              title:
+                type: string
+              form:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  answers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            type:
+                              type: string
+                            title:
+                              type: string
+                        type:
+                          type: string
+                        answer:
+                          type: string
           examples:
-            application/json:
+            text/plain; charset=utf-8:
               title: My Awesome Form
               form:
               - token: 21085286190ffad1248d17c4135ee56f
@@ -53,6 +81,7 @@ paths:
                     title: do you eat cheese everyday?
                   type: boolean
                   answer: true
+                
 
 
   
