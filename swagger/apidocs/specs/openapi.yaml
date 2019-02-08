@@ -1,0 +1,59 @@
+swagger: '2.0'
+schemes:
+  - https
+basePath: /
+host: api.typeform.com
+info:
+  version: '1.0'
+  title: Forms Forms Forms
+
+tags:
+  - name: Responses
+    description: Responses for a form
+paths:
+  /forms/{form_id}/responses:
+    x-owner:
+      - technical:
+          - name: Pau Boix
+          - email: pau@typeform.com
+    x-product: Responses
+    x-visibility: EXTERNAL
+    x-status: LIVE
+    get:
+      tags:
+        - Responses
+      summary: Retrieve responses
+      description: Returns form responses and date and time of form landing and submission.
+      parameters:
+        - name: form_id
+          in: query
+          type: string
+      consumes:
+        - text/plain
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/FormResponses' #TBD !!
+          examples:
+            application/json:
+              title: My Awesome Form
+              form:
+              - token: 21085286190ffad1248d17c4135ee56f
+                answers:
+                - field:
+                    id: hVONkQcnSNRj
+                    type: short_text
+                    title: What's your favourite cheese?
+                  type: text
+                  answer: Gouda
+                - field:
+                    id: RUqkXSeXBXSd
+                    type: yes_no
+                    title: do you eat cheese everyday?
+                  type: boolean
+                  answer: true
+
+
+  
+

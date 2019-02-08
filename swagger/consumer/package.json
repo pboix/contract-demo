@@ -4,8 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@pact-foundation/pact": "^7.2.0",
-    "jest": "^23.6.0",
-    "pact": "^4.3.2"
+    "jest": "^23.6.0"
   }
 }
