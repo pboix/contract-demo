@@ -31,7 +31,7 @@ paths:
       summary: Retrieve responses
       description: Returns form responses and date and time of form landing and submission
       produces:
-        - application/json; charset=UTF-8
+        - application/json; charset=utf-8
       responses:
         200:
           description: OK
@@ -64,7 +64,7 @@ paths:
                         answer:
                           type: string
           examples:
-            text/plain; charset=utf-8:
+            application/json:
               title: My Awesome Form
               form:
               - token: 21085286190ffad1248d17c4135ee56f
@@ -80,7 +80,7 @@ paths:
                     type: yes_no
                     title: do you eat cheese everyday?
                   type: boolean
-                  answer: true
+                  answer: "true"
                 
 
 
