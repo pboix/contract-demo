@@ -1,5 +1,5 @@
 const { Pact } = require('@pact-foundation/pact')
-const addInteractions = require('./pact_support/addInteractions')
+const addInteractions = require('../pact_support/addInteractions')
 const Form = require('./form')
 let provider
 

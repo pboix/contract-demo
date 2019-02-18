@@ -1,0 +1,83 @@
+swagger: '2.0'
+schemes:
+  - https
+basePath: /
+host: api.typeform.com
+info:
+  version: '1.0'
+  title: Forms Forms Forms
+
+tags:
+  - name: Responses
+    description: Responses for a form
+paths:
+  '/forms/abcdef/responses':
+    x-owner:
+      - technical:
+          - name: Pau Boix
+          - email: pau@typeform.com
+    x-product: Responses
+    x-visibility: EXTERNAL
+    x-status: LIVE
+    parameters:
+      - name: form_id
+        in: query
+        type: string
+        description: Pagination will return forms starting from the specified form ID.
+        x-example: abcdef
+    get:
+      tags:
+        - Responses
+      summary: Retrieve responses
+      description: Returns form responses and date and time of form landing and submission
+      produces:
+        - application/json; charset=utf-8
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties: 
+              title:
+                type: string
+              form:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  answers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            type:
+                              type: string
+                            title:
+                              type: string
+                        type:
+                          type: string
+                        answer:
+                          type: string
+          examples:
+            application/json:
+              title: My Awesome Form
+              form:
+              - token: 21085286190ffad1248d17c4135ee56f
+                answers:
+                - field:
+                    id: hVONkQcnSNRj
+                    type: short_text
+                    title: What's your favourite cheese?
+                  type: text
+                  answer: Gouda
+                - field:
+                    id: RUqkXSeXBXSd
+                    type: yes_no
+                    title: do you eat cheese everyday?
+                  type: boolean
+                  answer: "true"
