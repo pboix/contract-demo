@@ -27,7 +27,7 @@ describe('Consumer is tested', () => {
                             "title": "do you eat cheese everyday?"
                         },
                         "type": "boolean",
-                        "answer": true
+                        "answer": "true"
                     }
                 ]
             }
