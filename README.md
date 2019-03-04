@@ -63,7 +63,7 @@ This will validate our consumer against our Prism mock server, making sure that 
 ## Run provider tests
 
 First, let's make sure we have [Dredd](https://github.com/apiaryio/dredd/) installed:
-`yarn install -g dredd`
+`yarn global add dredd`
 
 In order to validate our provider, we will need to run the service first, so it can respond in its endpoints.
 
